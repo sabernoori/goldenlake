@@ -1,0 +1,58 @@
+/* localstyle.css – responsive overrides and tuning
+ *
+ * Overrides:
+ * - .hero_title-second-row gap on tablet (768–991px) and mobile landscape (480–767px)
+ * - Minor left offsets for the two italic titles to maintain ear-to-ear alignment
+ *
+ * Previous Webflow rules:
+ *   .hero_title-second-row { grid-column-gap: 14.2rem; grid-row-gap: 14.2rem; }
+ *   @media (max-width: 991px) { .hero_title-second-row { grid-row-gap: 25vw; } }
+ *
+ * These are replaced with a formula that uses the viewport aspect ratio
+ * (100vw / 100vh). Wider screens → larger ratio → smaller computed gap.
+ */
+
+:root {
+  /* Expose viewport aspect ratio as a variable for reuse */
+  --viewport-ratio: calc(100vw / 100vh);
+}
+
+/* Tablet: 768–991px */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  /* Tie spacing to model height so it tracks the visual subject */
+  .hero_center-element {
+    --model-h: clamp(18rem, 65vh, 27rem);
+    /* Much wider gap to prevent text underlapping the model */
+    --ear-gap: clamp(1.0rem, calc(var(--model-h) * 0.8), 9rem);
+    /* New: shift the words more as height decreases */
+    --dubai-shift: clamp(0rem, calc((27rem - var(--model-h)) * 0.22), 3.5rem);
+    --gold-shift: clamp(0rem, calc((27rem - var(--model-h)) * 0.22), 3.5rem);
+  }
+  .hero_model-img { height: var(--model-h); }
+  .hero_title-second-row { gap: var(--ear-gap); }
+  /* Baseline -2rem left, plus dynamic left shift as height decreases */
+  .hero_title.is-gold-chain { left: 0; transform: translateX(calc(-2rem + var(--gold-shift))); will-change: transform; }
+  .hero_title.is-in-dubai { left: 0; transform: translateX(calc(-1 * var(--dubai-shift))); will-change: transform; }
+}
+
+/* Mobile landscape: 480–767px */
+@media screen and (min-width: 480px) and (max-width: 767px) {
+  .hero_center-element {
+    --model-h: clamp(16rem, 60vh, 25rem);
+    /* Match tablet’s proportional spacing for visual consistency */
+    --ear-gap: clamp(1.0rem, calc(var(--model-h) * 0.8), 9rem);
+    /* Mirror tablet shift behavior */
+    --dubai-shift: clamp(0rem, calc((25rem - var(--model-h)) * 0.22), 3.5rem);
+    --gold-shift: clamp(0rem, calc((25rem - var(--model-h)) * 0.22), 3.5rem);
+  }
+  .hero_model-img { height: var(--model-h); }
+  .hero_title-second-row { gap: var(--ear-gap); }
+  /* Baseline -2rem left, plus dynamic left shift as height decreases */
+  .hero_title.is-gold-chain { left: 0; transform: translateX(calc(2rem - var(--gold-shift))); will-change: transform; }
+  .hero_title.is-in-dubai { left: 0; transform: translateX(calc(-1 * var(--dubai-shift))); will-change: transform; }
+}
+
+/* Notes:
+ * - `gap` works on flex containers and is easier than grid-*gap here.
+ * - `clamp()` keeps spacing within sensible bounds on squarer viewports.
+ */
