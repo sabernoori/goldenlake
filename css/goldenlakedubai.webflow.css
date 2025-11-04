@@ -1,0 +1,260 @@
+:root {
+  --colors--white: white;
+  --fonts--primary: Inter, sans-serif;
+  --fonts--secondary: "Instrument Serif", sans-serif;
+  --colors--yellow-text: #ffd8b4;
+  --colors--black: black;
+  --colors--dark-text: #1e1e1e;
+  --colors--gray-bg: #eae5eb;
+}
+
+a {
+  text-decoration: none;
+}
+
+.page_wrapper {
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+.navbar {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  inset: 0% 0% auto;
+}
+
+.section_hero {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  display: flex;
+}
+
+.nav_wrapper {
+  grid-column-gap: 1.25rem;
+  grid-row-gap: 1.25rem;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+}
+
+.nav_logo-wrapper {
+  color: var(--colors--white);
+  width: 17rem;
+}
+
+.nav_links {
+  grid-column-gap: 1.25rem;
+  grid-row-gap: 1.25rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.nav_contact {
+  grid-column-gap: 1.25rem;
+  grid-row-gap: 1.25rem;
+  justify-content: flex-end;
+  align-items: center;
+  width: 17rem;
+  display: flex;
+}
+
+.nav_logo-svg {
+  width: 5.625rem;
+  height: 2rem;
+}
+
+.nav_text-link {
+  font-family: var(--fonts--primary);
+  color: var(--colors--white);
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-size: .75rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.nav_link-block {
+  grid-column-gap: .25rem;
+  grid-row-gap: .25rem;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.icon16 {
+  width: 1rem;
+  height: 1rem;
+}
+
+.icon16.is-white {
+  aspect-ratio: 1;
+  color: var(--colors--white);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.max-width {
+  max-width: 110rem;
+}
+
+.hero_center-element {
+  position: relative;
+}
+
+.hero_center-element_texts {
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  font-family: var(--fonts--secondary);
+  color: var(--colors--white);
+  text-align: center;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  inset: -5% 0% auto;
+}
+
+.hero_title {
+  z-index: 2;
+  grid-column-gap: 2.5rem;
+  grid-row-gap: 2.5rem;
+  color: var(--colors--yellow-text);
+  letter-spacing: -.4svh;
+  white-space: nowrap;
+  word-break: keep-all;
+  flex-flow: column;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: clamp(2.5rem, 1.25rem + 2.5vw, 4rem);
+  font-weight: 400;
+  line-height: 1;
+  position: relative;
+}
+
+.hero_title.is-gold-chain {
+  z-index: 0;
+  font-style: italic;
+  position: relative;
+  left: 3px;
+}
+
+.hero_title.is-in-dubai {
+  z-index: 0;
+  font-style: italic;
+  position: relative;
+  left: -48px;
+}
+
+.hero_title-italic {
+  z-index: 0;
+  grid-column-gap: 10rem;
+  grid-row-gap: 10rem;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-style: italic;
+  position: relative;
+}
+
+.hero_model-img {
+  z-index: 1;
+  pointer-events: none;
+  position: relative;
+}
+
+.hero_title-second-row {
+  grid-column-gap: 14.2rem;
+  grid-row-gap: 14.2rem;
+  display: flex;
+  position: relative;
+}
+
+.icon24 {
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+}
+
+.icon24.is-white {
+  color: var(--colors--white);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.nav_hamburger {
+  color: var(--colors--white);
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  display: none;
+}
+
+@media screen and (max-width: 991px) {
+  .section_hero {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero_center-element_3d {
+    position: relative;
+  }
+
+  .hero_title {
+    letter-spacing: -.2svh;
+  }
+
+  .hero_model-img {
+    height: 65vh;
+    max-height: 26.875rem;
+  }
+
+  .hero_title-second-row {
+    grid-row-gap: 25vw;
+  }
+
+  .nav_hamburger {
+    display: flex;
+  }
+
+  .responsive-hidden {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .hero_center-element_texts {
+    top: -17%;
+  }
+
+  .hero_title.is-gold-chain, .hero_title.is-in-dubai {
+    left: 0;
+  }
+
+  .hero_model-img {
+    object-fit: contain;
+  }
+
+  .hero_title-second-row {
+    grid-column-gap: .5rem;
+    grid-row-gap: .5rem;
+  }
+}
+
+
