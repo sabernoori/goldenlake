@@ -17,6 +17,12 @@
   --viewport-ratio: calc(100vw / 100vh);
 }
 
+.hero_title-second-row {
+  grid-row-gap: 14.2rem;
+  display: flex;
+  position: relative;
+}
+
 /* Tablet: 768–991px */
 @media screen and (min-width: 768px) and (max-width: 991px) {
   /* Tie spacing to model height so it tracks the visual subject */
