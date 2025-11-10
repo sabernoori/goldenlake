@@ -1,13 +1,13 @@
 <script>
-  // ---- 1. Grab the form dynamically ----------------------------------------------------
-  const form = document.querySelector('form[data-name="newsletter"]');
-  if (!form) return; // safety
+  // ---- 1. Hardcoded form selector ------------------------------------------------------
+  const form = document.querySelector('#wf-form-newsletter');
+  if (!form) return;
 
-  // ---- 2. Extract PDF URL & desired file name from the form ---------------------------
-  const pdfUrl     = form.getAttribute('data-redirect') || form.getAttribute('redirect');
-  const fileName   = pdfUrl ? pdfUrl.split('/').pop() : 'download.pdf'; // fallback name
+  // ---- 2. HARDCODED PDF URL & FILENAME ------------------------------------------------
+  const PDF_URL     = 'https://cdn.prod.website-files.com/6908eb406bdea5c86f04229d/69119f63e2b3f50d86060031_Golden_Lake_Catalog.pdf';
+  const FILE_NAME   = 'Golden_Lake_Catalog.pdf';
 
-  // ---- 3. Helper: force download -------------------------------------------------------
+  // ---- 3. Force download function ------------------------------------------------------
   function downloadFile(url, name) {
     const a = document.createElement('a');
     a.href = url;
@@ -17,7 +17,7 @@
     document.body.removeChild(a);
   }
 
-  // ---- 4. Watch for Webflow success (w-form-done becomes visible) --------------------
+  // ---- 4. Watch for Webflow success message (w-form-done) -----------------------------
   const successObserver = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {
       const target = mutation.target;
@@ -25,21 +25,23 @@
           target.style.display !== 'none' && 
           target.style.display !== '') {
 
-        // Trigger download
-        downloadFile(pdfUrl, fileName);
+        // Start download immediately
+        downloadFile(PDF_URL, FILE_NAME);
 
-        // Optional: hide success message after brief flash
-        setTimeout(() => { target.style.display = 'none'; }, 1500);
+        // Optional: hide success message after 1.5 seconds
+        setTimeout(() => {
+          target.style.display = 'none';
+        }, 1500);
       }
     });
   });
 
-  // Start observing the success container
-  const successEl = document.querySelector('.success-message, .w-form-done');
+  // Observe the success message element
+  const successEl = document.querySelector('.success-message');
   if (successEl) {
-    successObserver.observe(successEl, { 
-      attributes: true, 
-      attributeFilter: ['style'] 
+    successObserver.observe(successEl, {
+      attributes: true,
+      attributeFilter: ['style']
     });
   }
 </script>
