@@ -12,6 +12,15 @@
  * (100vw / 100vh). Wider screens → larger ratio → smaller computed gap.
  */
 
+/* Product item hover effect */
+/* .product_item.w-inline-block {
+  transition: transform 0.2s ease-out;
+}
+
+.product_item.w-inline-block:hover {
+  transform: scale(0.9) !important;
+} */
+
 :root {
   /* Expose viewport aspect ratio as a variable for reuse */
   --viewport-ratio: calc(100vw / 100vh);
